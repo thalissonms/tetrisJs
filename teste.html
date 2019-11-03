@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{margin:0; padding:0;}
+    #x {
+        position: absolute;
+        display: block;
+        margin-left: -200px;
+        left: 50%;
+    }
+    #y {
+        width: 160px;
+        height: 40px;
+        display: block;
+        background-color: #AAA;
+        float: left;
+    }
+    #z {
+        width: 160px;
+        height: 40px;
+        display: block;
+        background-color: #F00;
+        float: left;
+    }
+    </style>
+</head>
+<body>
+    <div id="render"></div>
+    <button id="rotate" onclick="rotateObj()">Rodar</button>
+</body>
+<script type="text/javascript">
+    const tableHeight = 800
+    var  topObjX = 0
+    var hei = 40
+    const tableWidth = 400
+    var  topObjZ = 0
+    var gameSpeed = 5 // 20 15 10
+    var stoped = false
+    var roll = 0
+
+    function start (){
+        setInterval(render, 16)
+        
+    }
+    function stopGame (){
+        if (stoped == true){
+            clearInterval()
+        }
+    }
+    fall()
+    function fall (){
+        if (topObjX < tableHeight - hei){
+        topObjX = topObjX + 1
+        //console.log(topObjX)
+    } if (topObjX == tableHeight - hei && topObjZ < tableHeight - hei){
+        topObjZ = topObjZ + 1
+        console.log(topObjZ)
+        stoped = true
+        stopGame()
+    }
+}
+    function render (){
+        let render = `<div id="x" style="width:${tableWidth}px; height:${tableHeight}px; background-color:#333;">`
+            render += `<div id="y" style="margin-top:${topObjX}px; transform:rotate(${roll}deg);"></div>`
+            render += `<div id="z" style="margin-top:${topObjZ}px;"></div>`
+            '</div>'
+        document.querySelector('#render').innerHTML = render
+    }
+    function rotateObj (){
+        roll = roll + 90
+        if (hei == 40){
+            hei = 100
+        } else if (hei == 100) {
+            hei = 40
+        }
+    }
+    start()
+    requestAnimationFrame(fall)
+    </script>
+</html>

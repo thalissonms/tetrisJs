@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+    * {padding:0; margin:0;}
+    button:focus{
+        outline-style:none;
+    }
+    body {
+       background-color: #333;
+    }
+    #render {
+        width: 50%;
+        align-content: center;
+        vertical-align: center;
+        position: absolute;
+        right: 12.5%;
+        top: 20px;
+    }
+    #render table {
+        border: 1px solid #111;
+        float: left;
+    }
+    #nextObj {
+        border: 1px solid #111;
+        position: absolute;
+        right: 200px;
+    }
+    #render td {
+        width: 40px;
+        height: 40px;
+        background-color:#111;
+        text-align: center;
+        vertical-align: center;
+        font-family: monospace;
+        font-size: 18px;
+        position: relative;
+    }
+    .ij {
+        position: absolute;
+        top:2px;
+        right:2px;
+        font-size: 10px;
+        color: #AAA;
+    }
+    .mapPixel {
+        width: 40px;
+        height: 40px;
+        color: #555;
+    }
+    #console {
+        width: 25%;
+        height: 800px;
+        background-color: #888;
+        font-family: monospace;
+        font-size: 20px;
+        text-align: left;
+        display:none;
+        position: absolute;
+        top:20px;
+        left: 10%;
+        padding: 10px;
+        word-wrap:break-word;
+    }
+    #controllers {
+        width: 250px;
+        height: 90px;
+        padding-top:5px;
+        padding-bottom: 5px;
+        margin-left: 5px;
+        background-color: #CCC;
+        position: absolute;
+        bottom: 50px;
+        top: 160px;
+        vertical-align: center;
+    }
+    #controllers #downButton {
+        margin-top: 10px;
+        margin-left: 80px;
+    }
+    #x {
+        width: 100px;
+        height: 40px;
+        background-color:#F17;
+        border:none;
+        box-shadow: 1px 2px 10px #333;
+        border-radius: 2px;
+        text-align: center;
+        font-display: Arial;
+        font-size: 20px;
+        font-weight: bolder;
+        color:#222;
+        margin-left: 18px;
+        margin-top: 20px;
+    }
+    #debugButtons {
+        width: 260px;
+        height: 260px;
+        background: #EFEFEF;
+        position: absolute;
+        right: 400px;
+        top: 240px;
+        display: block;
+        align-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    #debugButtons button {
+        width: 100px;
+        height: 40px;
+        background-color:brown;
+        border:none;
+        box-shadow: 1px 2px 10px #777;
+        border-radius: 3px;
+        text-align: center;
+        font-display: Arial;
+        font-size: 20px;
+        font-weight: bolder;
+        color:#FFF;
+        margin-left: 18px;
+    }
+    #debugButtons select {
+        width: 150px;
+        margin-top: 20px;
+        position: absolute;
+        left: 50%;
+        margin-left: -77px;
+        border:1.5px brown solid;
+        background-color: #555;
+        font-family: Arial;
+        font-size: 20px;
+        color: #FFF;
+        border-radius: 3px;
+        box-shadow: 1px 2px 10px #777;
+        
+    }
+    #debugButtons #sendSpeed {
+        font-size: 14px;
+        height: 30px;
+        width: 140px;
+        position: absolute;
+        top:110px;
+        left:60px;
+    }
+    #pontos {
+        width: 180px;
+        height: 29px;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-top: 6px;
+        font-family: monospace;
+        font-size: 18px;
+        color: #FFF;
+        background-color: #202020;
+        border: 1px solid #111;
+        text-align: right;
+        position: absolute;
+        right: 550px;
+        top: 50px;
+    }
+</style>
+<title>Tetris JS</title>
+</head>
+
+<body>
+    <div id="render"></div>
+    <div id="pontos"></div>
+    <button onclick="debugIO()" id="x">Debugger</button><br>
+    <div id="debugButtons">        
+        <button onclick="clean()">Clean</button>
+        <button onclick="setTimeout(objRoll(), 10)">Roll</button><br>
+        <select id="select">
+            <option value="1000">Slow</option>
+            <option value="550" selected>Normal</option>
+            <option value="200">Fast</option>
+        </select>
+        <button id="sendSpeed" onclick="changeGameSpeed()" id="y">Set Speed</button>
+        <div id="controllers">
+            <button onclick="objToLeft()">Left</button>
+            <button onclick="objToRight()">Right</button>
+            <button id="downButton" onclick="objToDown()">Down</button>
+        </div>
+    </div>
+    <div id="console"></div>
+</body>
+<script type="text/JavaScript" src="script/script2.js"></script>
+</html>
